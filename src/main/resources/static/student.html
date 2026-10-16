@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sinh viên</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { background-color: #f4f6f9; }
+        .card { border-radius: 8px; border: none; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .table-custom-header th { background-color: #34495e; color: white; padding: 12px; }
+        .btn-warning-custom { background-color: #f39c12; color: white; border: none; }
+        .btn-warning-custom:hover { background-color: #d68910; color: white; }
+    </style>
+</head>
+<body>
+<div class="container my-4" style="max-width: 950px;">
+    <!-- Tiêu đề -->
+    <h2 class="text-center fw-bold mb-4" style="color: #2c3e50;">Quản lý sinh viên</h2>
+
+    <!-- Khung Tìm kiếm -->
+    <div class="card p-3 mb-4">
+        <div class="row g-2">
+            <div class="col-md-8">
+                <input type="text" id="searchInput" class="form-control" placeholder="Tìm theo mã SV / họ tên / email / SĐT...">
+            </div>
+            <div class="col-md-4 d-flex gap-2">
+                <button class="btn btn-primary px-3" onclick="searchStudents()">Tìm kiếm</button>
+                <button class="btn btn-secondary px-3" onclick="clearSearch()">Xóa tìm kiếm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Khung Thêm / Sửa sinh viên -->
+    <div class="card p-3 mb-4">
+        <h5 class="fw-bold mb-3" id="formTitle">Thêm sinh viên</h5>
+        <form id="studentForm">
+            <input type="hidden" id="studentId">
+            <div class="row g-2 mb-3">
+                <div class="col"><input type="text" id="studentCode" class="form-control" placeholder="Mã sinh viên" required></div>
+                <div class="col"><input type="text" id="fullName" class="form-control" placeholder="Họ và tên" required></div>
+                <div class="col"><input type="email" id="email" class="form-control" placeholder="Email" required></div>
+                <div class="col"><input type="text" id="phone" class="form-control" placeholder="Số điện thoại"></div>
+                <div class="col"><input type="text" id="className" class="form-control" placeholder="Lớp"></div>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" id="btnSave" class="btn btn-primary px-3">Thêm sinh viên</button>
+                <button type="button" class="btn btn-secondary px-3" onclick="resetForm()">Hủy</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bảng danh sách sinh viên -->
+    <div class="card overflow-hidden">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-custom-header">
+                <tr>
+                    <th>Mã SV</th>
+                    <th>Họ và tên</th>
+                    <th>Email</th>
+                    <th>SĐT</th>
+                    <th>Lớp</th>
+                    <th class="text-center">Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="studentTableBody">
+                <tr><td colspan="6" class="text-center">Đang tải dữ liệu...</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="./student.js"></script>
+</body>
+</html>
